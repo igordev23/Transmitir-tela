@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compartilhar Tela</title>
+</head>
+<body>
+  <h1>Compartilhar Tela</h1>
+  <button id="shareScreen">Compartilhar Tela</button>
+  <video id="screenVideo" autoplay playsinline></video>
+
+  <script>
+    const shareScreenButton = document.getElementById('shareScreen');
+    const screenVideo = document.getElementById('screenVideo');
+
+    shareScreenButton.addEventListener('click', async () => {
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        screenVideo.srcObject = stream;
+      } catch (err) {
+        console.error("Erro ao compartilhar a tela:", err);
+      }
+    });
+  </script>
+</body>
+</html>
